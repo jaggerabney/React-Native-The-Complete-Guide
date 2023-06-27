@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import GoalItem from "./components/GoalItem/GoalItem";
 import GoalInput from "./components/GoalInput/GoalInput";
@@ -31,39 +32,42 @@ export default function App() {
   }
 
   return (
-    <View style={styles.app}>
-      <Button
-        title="Add new goal"
-        color="#5e0acc"
-        onPress={toggleModalVisibilityHandler}
-      />
-      <GoalInput
-        onAdd={addGoalHandler}
-        onCancel={toggleModalVisibilityHandler}
-        visible={modalIsVisible}
-      />
-      <View style={styles.goalsWrapper}>
-        <FlatList
-          data={courseGoals}
-          alwaysBounceVertical={false}
-          keyExtractor={(item, index) => item.id}
-          renderItem={(itemData) => (
-            <GoalItem
-              id={itemData.item.id}
-              text={itemData.item.text}
-              onDelete={deleteGoalHandler}
-            />
-          )}
+    <>
+      <View style={styles.app}>
+        <StatusBar style="light" />
+        <Button
+          title="Add new goal"
+          color="#b180f0"
+          onPress={toggleModalVisibilityHandler}
         />
+        <GoalInput
+          onAdd={addGoalHandler}
+          onCancel={toggleModalVisibilityHandler}
+          visible={modalIsVisible}
+        />
+        <View style={styles.goalsWrapper}>
+          <FlatList
+            data={courseGoals}
+            alwaysBounceVertical={false}
+            keyExtractor={(item, index) => item.id}
+            renderItem={(itemData) => (
+              <GoalItem
+                id={itemData.item.id}
+                text={itemData.item.text}
+                onDelete={deleteGoalHandler}
+              />
+            )}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   app: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 64,
     paddingHorizontal: 16,
   },
   goalsWrapper: {
