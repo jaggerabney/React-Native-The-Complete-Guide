@@ -6,14 +6,21 @@ function StartScreen() {
   return (
     <View style={styles.inputWrapper}>
       <TextInput style={styles.input} maxLength={2} keyboardType="number-pad" />
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.actions}>
+        <View style={styles.action}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.action}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   inputWrapper: {
+    alignItems: "center",
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
@@ -38,6 +45,13 @@ const styles = StyleSheet.create({
     color: "#ddb52f",
     marginVertical: 8,
     fontWeight: "bold",
+  },
+  actions: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  action: {
+    flex: 1,
   },
 });
 
