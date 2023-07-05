@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StyleSheet, TextInput, Alert, View } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
+import Colors from "../constants/colors";
 
 function StartScreen({ onConfirm }) {
   const [userInput, setUserInput] = useState("");
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     padding: 16,
     borderRadius: 8,
-    backgroundColor: "#3b021f",
+    backgroundColor: Colors.primaryDark,
     elevation: 4,
     shadowColor: "black",
     shadowOffset: {
@@ -75,9 +76,9 @@ const styles = StyleSheet.create({
     width: 50,
     textAlign: "center",
     fontSize: 32,
-    borderBottomColor: "#ddb52f",
+    borderBottomColor: Colors.accent,
     borderBottomWidth: 2,
-    color: "#ddb52f",
+    color: Colors.accent,
     marginVertical: 8,
     fontWeight: "bold",
   },
