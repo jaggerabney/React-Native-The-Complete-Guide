@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, Alert, View } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 
-function StartScreen() {
+function StartScreen({ onConfirm }) {
   const [userInput, setUserInput] = useState("");
 
   function inputChangeHandler(text) {
@@ -23,7 +23,7 @@ function StartScreen() {
       return;
     }
 
-    console.log("Valid number!");
+    onConfirm(chosenNumber);
   }
 
   function resetInputHandler() {
