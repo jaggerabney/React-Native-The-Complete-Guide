@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, TextInput, Alert, View } from "react-native";
 
-import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../components/UI/PrimaryButton/PrimaryButton";
 import Colors from "../constants/colors";
 
 function StartScreen({ onConfirm }) {

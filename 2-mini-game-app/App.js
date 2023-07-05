@@ -5,8 +5,8 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import StartScreen from "./screens/StartScreen";
 import GameScreen from "./screens/GameScreen";
-import bgImage from "./assets/images/background.png";
 import Colors from "./constants/colors";
+import bgImage from "./assets/images/background.png";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
@@ -16,7 +16,7 @@ export default function App() {
   }
 
   let screen = userNumber ? (
-    <GameScreen />
+    <GameScreen chosenNumber={userNumber} />
   ) : (
     <StartScreen onConfirm={numberConfirmHandler} />
   );
