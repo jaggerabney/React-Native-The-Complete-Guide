@@ -16,7 +16,7 @@ export default function App() {
   }
 
   let screen = userNumber ? (
-    <GameScreen chosenNumber={userNumber} />
+    <GameScreen userNumber={userNumber} />
   ) : (
     <StartScreen onConfirm={numberConfirmHandler} />
   );
