@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, Alert, View } from "react-native";
+import { StyleSheet, TextInput, Alert, View, Text } from "react-native";
 
 import PrimaryButton from "../components/UI/PrimaryButton/PrimaryButton";
+import InstructionText from "../components/UI/InstructionText/InstructionText";
+import Title from "../components/UI/Title/Title";
+import Card from "../components/UI/Card/Card";
 import Colors from "../constants/colors";
 
 function StartScreen({ onConfirm }) {
@@ -32,32 +35,43 @@ function StartScreen({ onConfirm }) {
   }
 
   return (
-    <View style={styles.inputWrapper}>
-      <TextInput
-        style={styles.input}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={inputChangeHandler}
-        value={userInput}
-      />
-      <View style={styles.actions}>
-        <View style={styles.action}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+    <View style={styles.rootWrapper}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>Enter a number:</InstructionText>
+        <TextInput
+          style={styles.input}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={inputChangeHandler}
+          value={userInput}
+        />
+        <View style={styles.actions}>
+          <View style={styles.action}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.action}>
+            <PrimaryButton onPress={confirmButtonHandler}>
+              Confirm
+            </PrimaryButton>
+          </View>
         </View>
-        <View style={styles.action}>
-          <PrimaryButton onPress={confirmButtonHandler}>Confirm</PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  rootWrapper: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
+  },
   inputWrapper: {
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 36,
     marginHorizontal: 24,
     padding: 16,
     borderRadius: 8,
