@@ -41,7 +41,7 @@ export default function App() {
   );
 
   if (gameIsOver) {
-    return <GameOverScreen />;
+    screen = <GameOverScreen />;
   }
 
   return (
