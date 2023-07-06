@@ -2,16 +2,29 @@ import { useState } from "react";
 import { StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 import StartScreen from "./screens/StartScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import Colors from "./constants/colors";
 import bgImage from "./assets/images/background.png";
+import openSansRegular from "./assets/fonts/OpenSans-Regular.ttf";
+import openSansBold from "./assets/fonts/OpenSans-Bold.ttf";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(false);
+
+  const [fontsLoaded] = useFonts({
+    "open-sans": openSansRegular,
+    "open-sans-bold": openSansBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   function numberConfirmHandler(number) {
     setUserNumber(number);
