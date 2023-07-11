@@ -16,6 +16,7 @@ import openSansBold from "./assets/fonts/OpenSans-Bold.ttf";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(false);
+  const [rounds, setRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({
     "open-sans": openSansRegular,
@@ -34,6 +35,12 @@ export default function App() {
     setGameIsOver(true);
   }
 
+  function newGameHandler() {
+    setGameIsOver(false);
+    setUserNumber(null);
+    setRounds(0);
+  }
+
   let screen = userNumber ? (
     <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
   ) : (
@@ -41,7 +48,13 @@ export default function App() {
   );
 
   if (gameIsOver) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        userNumber={userNumber}
+        rounds={rounds}
+        onNewGame={newGameHandler}
+      />
+    );
   }
 
   return (
