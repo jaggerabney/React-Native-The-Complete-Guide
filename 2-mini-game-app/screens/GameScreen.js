@@ -32,7 +32,7 @@ function GameScreen({ userNumber, onGameOver }) {
       min = 1;
       max = 100;
 
-      onGameOver();
+      onGameOver(roundsArray.length);
     }
   }, [currentGuess, userNumber, onGameOver]);
 
@@ -66,7 +66,7 @@ function GameScreen({ userNumber, onGameOver }) {
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText style={styles.instructionText}>
-          Higher or lower?
+          Is your number higher or lower?
         </InstructionText>
         <View style={styles.actions}>
           <View style={styles.action}>
@@ -81,7 +81,7 @@ function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listWrapper}>
         <FlatList
           data={roundsArray}
           renderItem={(itemData) => (
@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
   },
   instructionText: {
     marginBottom: 12,
+    fontSize: 20,
+  },
+  listWrapper: {
+    flex: 1,
+    padding: 16,
   },
 });
 

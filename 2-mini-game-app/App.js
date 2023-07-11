@@ -31,7 +31,8 @@ export default function App() {
     setUserNumber(number);
   }
 
-  function gameOverHandler() {
+  function gameOverHandler(numRounds) {
+    setRounds(numRounds);
     setGameIsOver(true);
   }
 
