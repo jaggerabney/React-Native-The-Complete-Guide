@@ -5,6 +5,8 @@ import {
   Alert,
   View,
   useWindowDimensions,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 
 import PrimaryButton from "../components/UI/PrimaryButton/PrimaryButton";
@@ -44,35 +46,42 @@ function StartScreen({ onConfirm }) {
   const marginTopDistance = windowHeight < 380 ? 30 : 100;
 
   return (
-    <View style={[styles.rootWrapper, { marginTop: marginTopDistance }]}>
-      <Title>Guess My Number</Title>
-      <Card>
-        <InstructionText>Enter a number:</InstructionText>
-        <TextInput
-          style={styles.input}
-          maxLength={2}
-          keyboardType="number-pad"
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={inputChangeHandler}
-          value={userInput}
-        />
-        <View style={styles.actions}>
-          <View style={styles.action}>
-            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-          </View>
-          <View style={styles.action}>
-            <PrimaryButton onPress={confirmButtonHandler}>
-              Confirm
-            </PrimaryButton>
-          </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView style={styles.screen} behavior="padding">
+        <View style={[styles.rootWrapper, { marginTop: marginTopDistance }]}>
+          <Title>Guess My Number</Title>
+          <Card>
+            <InstructionText>Enter a number:</InstructionText>
+            <TextInput
+              style={styles.input}
+              maxLength={2}
+              keyboardType="number-pad"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={inputChangeHandler}
+              value={userInput}
+            />
+            <View style={styles.actions}>
+              <View style={styles.action}>
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+              </View>
+              <View style={styles.action}>
+                <PrimaryButton onPress={confirmButtonHandler}>
+                  Confirm
+                </PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   rootWrapper: {
     flex: 1,
     alignItems: "center",
