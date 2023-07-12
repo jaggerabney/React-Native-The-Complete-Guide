@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, Alert, View, Text } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  Alert,
+  View,
+  useWindowDimensions,
+} from "react-native";
 
 import PrimaryButton from "../components/UI/PrimaryButton/PrimaryButton";
 import InstructionText from "../components/UI/InstructionText/InstructionText";
@@ -8,6 +14,7 @@ import Card from "../components/UI/Card/Card";
 import Colors from "../constants/colors";
 
 function StartScreen({ onConfirm }) {
+  const { windowWidth, windowHeight } = useWindowDimensions();
   const [userInput, setUserInput] = useState("");
 
   function inputChangeHandler(text) {
@@ -34,8 +41,10 @@ function StartScreen({ onConfirm }) {
     setUserInput("");
   }
 
+  const marginTopDistance = windowHeight < 380 ? 30 : 100;
+
   return (
-    <View style={styles.rootWrapper}>
+    <View style={[styles.rootWrapper, { marginTop: marginTopDistance }]}>
       <Title>Guess My Number</Title>
       <Card>
         <InstructionText>Enter a number:</InstructionText>
@@ -66,7 +75,6 @@ function StartScreen({ onConfirm }) {
 const styles = StyleSheet.create({
   rootWrapper: {
     flex: 1,
-    marginTop: 100,
     alignItems: "center",
   },
   inputWrapper: {
