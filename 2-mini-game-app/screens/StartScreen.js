@@ -16,7 +16,7 @@ import Card from "../components/UI/Card/Card";
 import Colors from "../constants/colors";
 
 function StartScreen({ onConfirm }) {
-  const { windowWidth, windowHeight } = useWindowDimensions();
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const [userInput, setUserInput] = useState("");
 
   function inputChangeHandler(text) {

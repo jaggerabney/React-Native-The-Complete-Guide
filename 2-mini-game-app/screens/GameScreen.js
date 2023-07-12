@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Alert, Text, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Alert,
+  FlatList,
+  useWindowDimensions,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import GuessLogItem from "../components/game/GuessLogItem/GuessLogItem";
@@ -24,6 +30,7 @@ let min = 1,
 
 function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = generateRandomNumberBetween(1, 100, userNumber);
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [roundsArray, setRoundsArray] = useState([]);
 
@@ -60,9 +67,8 @@ function GameScreen({ userNumber, onGameOver }) {
     setRoundsArray((prevRoundsArray) => [currentGuess, ...prevRoundsArray]);
   }
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText style={styles.instructionText}>
@@ -81,6 +87,33 @@ function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if (windowWidth > 500) {
+    content = (
+      <>
+        <View style={styles.actionsWide}>
+          <View style={styles.action}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.action}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's Guess</Title>
+      {content}
       <View style={styles.listWrapper}>
         <FlatList
           data={roundsArray}
@@ -106,6 +139,10 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: "row",
   },
+  actionsWide: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   action: {
     flex: 1,
   },
@@ -115,7 +152,7 @@ const styles = StyleSheet.create({
   },
   listWrapper: {
     flex: 1,
-    padding: 16,
+    padding: 4,
   },
 });
 
