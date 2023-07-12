@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { StatusBar } from "expo-status-bar";
 
 import StartScreen from "./screens/StartScreen";
 import GameScreen from "./screens/GameScreen";
@@ -59,19 +60,22 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primaryGradient, Colors.accent]}
-      style={styles.background}
-    >
-      <ImageBackground
-        source={bgImage}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primaryGradient, Colors.accent]}
         style={styles.background}
-        imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView style={styles.background}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={bgImage}
+          resizeMode="cover"
+          style={styles.background}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.background}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
