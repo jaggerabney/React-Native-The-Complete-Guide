@@ -6,10 +6,24 @@ import {
   Platform,
   Dimensions,
 } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
+
+import { CATEGORIES } from "../../data/dummy-data";
 
 function CategoryItem({ title, color }) {
+  const headerHeight = useHeaderHeight();
+  const marginLength = 12;
+  const itemHeight =
+    (Dimensions.get("window").height - headerHeight) / (CATEGORIES.length / 2) -
+    marginLength * 2;
+
   return (
-    <View style={styles.wrapperOuter}>
+    <View
+      style={[
+        styles.wrapperOuter,
+        { height: itemHeight, margin: marginLength },
+      ]}
+    >
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
@@ -25,8 +39,6 @@ function CategoryItem({ title, color }) {
 const styles = StyleSheet.create({
   wrapperOuter: {
     flex: 1,
-    margin: 12,
-    height: Dimensions.get("window").height / 6,
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
