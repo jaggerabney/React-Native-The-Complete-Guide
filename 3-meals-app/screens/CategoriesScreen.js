@@ -1,7 +1,7 @@
 import { FlatList } from "react-native";
 
-import { CATEGORIES } from "../data/dummy-data";
 import CategoryItem from "../components/CategoryItem/CategoryItem";
+import { CATEGORIES } from "../data/dummy-data";
 
 function renderCategoryItem(itemData) {
   return (
@@ -15,6 +15,7 @@ function CategoriesScreen() {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={renderCategoryItem}
+      numColumns={2}
     />
   );
 }
