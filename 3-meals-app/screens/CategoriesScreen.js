@@ -4,11 +4,13 @@ import CategoryItem from "../components/CategoryItem/CategoryItem";
 import { CATEGORIES } from "../data/dummy-data";
 
 function CategoriesScreen({ navigation }) {
-  function itemPressHandler() {
-    navigation.navigate("Meals Overview");
-  }
-
   function renderCategoryItem({ item }) {
+    function itemPressHandler() {
+      navigation.navigate("Meals Overview", {
+        categoryId: item.id,
+      });
+    }
+
     return (
       <CategoryItem
         title={item.title}
