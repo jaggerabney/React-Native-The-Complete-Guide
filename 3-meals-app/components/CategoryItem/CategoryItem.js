@@ -10,7 +10,7 @@ import { useHeaderHeight } from "@react-navigation/elements";
 
 import { CATEGORIES } from "../../data/dummy-data";
 
-function CategoryItem({ title, color }) {
+function CategoryItem({ title, color, onPress }) {
   const headerHeight = useHeaderHeight();
   const marginLength = 12;
   const itemHeight =
@@ -27,6 +27,7 @@ function CategoryItem({ title, color }) {
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+        onPress={onPress}
       >
         <View style={[styles.wrapperInner, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
   wrapperOuter: {
     flex: 1,
     borderRadius: 8,
-    elevation: 4,
     shadowColor: "black",
     shadowOpacity: 0.25,
     shadowOffset: {
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
   },
   wrapperInner: {
     flex: 1,
-    padding: 16,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
   },
   pressable: {
     flex: 1,
+    margin: 0,
   },
   pressed: {
     opacity: 0.5,

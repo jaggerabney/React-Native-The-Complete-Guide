@@ -3,13 +3,21 @@ import { FlatList } from "react-native";
 import CategoryItem from "../components/CategoryItem/CategoryItem";
 import { CATEGORIES } from "../data/dummy-data";
 
-function renderCategoryItem(itemData) {
-  return (
-    <CategoryItem title={itemData.item.title} color={itemData.item.color} />
-  );
-}
+function CategoriesScreen({ navigation }) {
+  function itemPressHandler() {
+    navigation.navigate("Meals Overview");
+  }
 
-function CategoriesScreen() {
+  function renderCategoryItem({ item }) {
+    return (
+      <CategoryItem
+        title={item.title}
+        color={item.color}
+        onPress={itemPressHandler}
+      />
+    );
+  }
+
   return (
     <FlatList
       data={CATEGORIES}
