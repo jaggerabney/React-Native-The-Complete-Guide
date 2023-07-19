@@ -32,9 +32,6 @@ export default function App() {
             <Stack.Screen
               name="MealsOverview"
               component={MealsOverviewScreen}
-              options={{
-                title: "Meals Overview",
-              }}
             />
           </Stack.Navigator>
         </SafeAreaView>
