@@ -21,13 +21,19 @@ function MealsOverviewScreen({ route, navigation }) {
   }, [categoryId, navigation]);
 
   function renderMealItem({ item }) {
+    function pressHandler() {
+      navigation.navigate("MealDetails", { mealId: item.id });
+    }
+
     return (
       <MealItem
+        id={item.id}
         title={item.title}
         imageUrl={item.imageUrl}
         duration={item.duration}
         complexity={item.complexity}
         affordability={item.affordability}
+        onPress={pressHandler}
       />
     );
   }
