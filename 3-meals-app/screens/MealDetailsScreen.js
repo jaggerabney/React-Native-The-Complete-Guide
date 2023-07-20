@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -12,23 +12,31 @@ import {
 import MealDetails from "../components/MealDetails/MealDetails";
 import Subtitle from "../components/Subtitle/Subtitle";
 import List from "../components/List/List";
+import IconButton from "../components/IconButton/IconButton";
 import { MEALS } from "../data/dummy-data";
 
 function MealDetailsScreen({ route, navigation }) {
+  const [isFavorited, setIsFavorited] = useState(false);
+
   const mealId = route.params.mealId;
   const meal = MEALS.find((meal) => meal.id === mealId);
 
-  function headerButtonPressHandler() {
-    ToastAndroid.show("Pressed!", ToastAndroid.SHORT);
+  function toggleFavoriteHandler() {
+    setIsFavorited((prevIsFav) => !prevIsFav);
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button title="Tap me!" onPress={headerButtonPressHandler} />
+        <IconButton
+          key="favoriteStar"
+          icon={isFavorited ? "star" : "star-outline"}
+          color="white"
+          onPress={toggleFavoriteHandler}
+        />
       ),
     });
-  }, []);
+  }, [isFavorited]);
 
   return (
     <ScrollView contentContainerStyle={styles.wrapper}>
