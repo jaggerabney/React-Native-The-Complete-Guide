@@ -29,12 +29,13 @@ function MealDetailsScreen({ route, navigation }) {
     navigation.setOptions({
       headerRight: () => (
         <IconButton
-          key="favoriteStar"
+          key={meal.id}
           icon={isFavorited ? "star" : "star-outline"}
           color="white"
           onPress={toggleFavoriteHandler}
         />
       ),
+      title: meal.title,
     });
   }, [isFavorited]);
 
