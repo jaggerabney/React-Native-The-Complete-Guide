@@ -1,13 +1,14 @@
+import "react-native-get-random-values";
 import { View, Text, StyleSheet } from "react-native";
 
 function List({ data }) {
-  return data.map((item) => (
-    <View style={styles.item}>
-      <Text style={styles.text} key={item}>
-        {item}
-      </Text>
-    </View>
-  ));
+  return data.map((item) => {
+    return (
+      <View style={styles.item} key={item}>
+        <Text style={styles.text}>{item}</Text>
+      </View>
+    );
+  });
 }
 
 const styles = StyleSheet.create({
